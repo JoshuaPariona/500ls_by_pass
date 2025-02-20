@@ -1,16 +1,16 @@
 function openApp() {
-  const deepLink = transformQueryToPath();
-  window.location.href = deepLink;
+  const deepLink = transformQueryToPath(); 
+
+  const androidIntent = `intent://${deepLink.replace(/^.*?:\/\//, '')}#Intent;scheme=500ls;end;`;
 
   const deepLinkElement = document.getElementById("deepLink");
   if (deepLinkElement) {
-    deepLinkElement.setAttribute("href", deepLink);
+    deepLinkElement.setAttribute("href", androidIntent);
   }
 
-  setTimeout(() => {
-    window.location.href =
-      "https://play.google.com/store/apps/details?id=com.slack";
-  }, 2000);
+  console.log(androidIntent);
+
+  window.location.href = androidIntent;
 }
 
 function transformQueryToPath() {
