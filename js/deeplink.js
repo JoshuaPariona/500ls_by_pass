@@ -8,7 +8,7 @@ function openApp() {
     if (deepLinkElement) {
       deepLinkElement.setAttribute("href", deepLink);
     }
-    window.location.href = deepLink;
+    window.open(deepLink, self);
   } else if (isAndroid) {
     const androidIntent = `intent://${deepLink.replace(/^.*?:\/\//, '')}#Intent;scheme=500ls;end;`;
     if (deepLinkElement) {
@@ -27,7 +27,7 @@ function transformQueryToPath() {
   params.forEach((value, key) => {
     pathUrl += `/${key}/${encodeURIComponent(value)}`;
   });
-  
+
   return pathUrl;
 }
 
