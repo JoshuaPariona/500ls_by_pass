@@ -1,16 +1,21 @@
 function openApp() {
-  const deepLink = transformQueryToPath(); 
-
-  const androidIntent = `intent://${deepLink.replace(/^.*?:\/\//, '')}#Intent;scheme=500ls;end;`;
-
+  const deepLink = transformQueryToPath();
+  const isiOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
+  const isAndroid = /Android/.test(navigator.userAgent);
   const deepLinkElement = document.getElementById("deepLink");
-  if (deepLinkElement) {
-    deepLinkElement.setAttribute("href", androidIntent);
+  
+  if (isiOS) {
+    if (deepLinkElement) {
+      deepLinkElement.setAttribute("href", deepLink);
+    }
+    window.location.href = deepLink;
+  } else if (isAndroid) {
+    const androidIntent = `intent://${deepLink.replace(/^.*?:\/\//, '')}#Intent;scheme=500ls;end;`;
+    if (deepLinkElement) {
+      deepLinkElement.setAttribute("href", androidIntent);
+    }
+    window.location.href = androidIntent;
   }
-
-  console.log(androidIntent);
-
-  window.location.href = androidIntent;
 }
 
 function transformQueryToPath() {
@@ -22,7 +27,7 @@ function transformQueryToPath() {
   params.forEach((value, key) => {
     pathUrl += `/${key}/${encodeURIComponent(value)}`;
   });
-
-  console.log(pathUrl);
+  
   return pathUrl;
 }
+

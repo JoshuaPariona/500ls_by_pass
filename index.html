@@ -3,11 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>500ls_deepLink</title>
-  <script src="js/deeplink.js"></script>
+  <title>500 Life-Study</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body onload="openApp()">
-  <h1>Probando Deep Link...</h1>
-  <p>Si la app no se abre automáticamente, <a href="#" id="deepLink">haz clic aquí</a>.</p>
+  <div class="container">
+    <img src="https://500lifestudies.org/wp-content/uploads/2020/11/logo@2x-300x160.png" alt="500LS Logo" class="logo">
+    <h1>Open 500LS App</h1>
+    <p>If the app does not open automatically, click the button below.</p>
+    <a href="#" id="deepLink" class="button">Open App</a>
+    <p class="store-links">Or download it from:</p>
+    <div class="store-buttons">
+      <a href="https://apps.apple.com/us/app/500-life-studies/id6444869330" target="_blank" class="store-btn">App Store</a>
+      <a href="https://play.google.com/store/apps/details?id=com.eng500ls.lsm" target="_blank" class="store-btn">Google Play</a>
+    </div>
+  </div>
+  <script src="js/deeplink.js"></script>
 </body>
 </html>
